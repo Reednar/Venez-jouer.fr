@@ -1,0 +1,47 @@
+.quitter-btn {
+    float: right;
+}
+
+.td-morpion {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pile {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+}
+
+.face {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+}
+
+.p-face {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.p-pile {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.pile:hover {
+    background-color: #00FF00;
+}
+
+.face:hover {
+    background-color: #FF0000;
+}

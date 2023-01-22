@@ -1,0 +1,39 @@
+@media screen and (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.5em;
+    }
+
+    .td-mobile {
+        display: none;
+    }
+
+    .th-mobile {
+        display: none;
+    }
+
+    .td-morpion {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .navbar-brand {
+        font-size: 2em;
+    }
+
+    .td-mobile {
+        display: none;
+    }
+
+    .th-mobile {
+        display: none;
+    }
+
+    .td-morpion {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+}
