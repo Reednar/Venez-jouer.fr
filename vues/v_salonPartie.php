@@ -185,6 +185,12 @@ if ($partie->getIdJoueur() == $_SESSION['joueur']->getId()) {
             }
         });
     }, 1000);
+
+    var pile_ou_face = document.getElementById('pile_ou_face');
+    var modal = bootstrap.Modal.getInstance(pile_ou_face, {
+        backdrop: 'static',
+        keyboard: false
+    });
 </script>
 
 <div class="modal" tabindex="-1" id="pile_ou_face">

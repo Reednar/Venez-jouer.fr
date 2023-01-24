@@ -78,10 +78,37 @@ switch ($action) {
             header('Location: index.php?uc=authentification&action=inscription');
         } else {
             $password_hash = secure_password($donneesPost['password']);
-            var_dump($donneesPost['pseudo'], $donneesPost['email'], $password_hash);
             Joueur::inscription($donneesPost['pseudo'], $donneesPost['email'], $password_hash);
             set_flash("Votre compte a bien été créé. Vous pouvez vous connecter.", 'success');
             header('Location: index.php?uc=authentification&action=connexion');
+        }
+        break;
+    case 'tempProfile':
+        include('vues/v_tempProfile.php');
+        break;
+    case 'validationProfileTemp':
+        $pseudo = secure_data($_POST['pseudo']);
+        if ($pseudo == "") {
+            $pseudo = "Joueur";
+        } else {
+            $pseudo = preg_replace('/[^A-Za-z0-9\-]/', '', $pseudo);
+        }
+        $email = $pseudo . "@temp.com";
+        $template_password = $pseudo . "tempo*7cE]{4Q3x4yWq";
+        $password = secure_password($template_password);
+        $email_secure = secure_data($email);
+        $password_secure = secure_data($password);
+        Joueur::inscription($pseudo, $email_secure, $password_secure);
+        $joueur = Joueur::connexion($email_secure, $template_password);
+        if (!empty($joueur)) {
+            $_SESSION['joueur'] = Joueur::new_instance_joueur($joueur['id_joueur'], $joueur['pseudo'], $joueur['mail'], $joueur['password']);
+            // Créer un cookie qui expire au bout de 30 minutes
+            setcookie('tempProfile', $joueur['id_joueur'], time() + 60, '/');
+            set_flash("Vous êtes connecté avec un profil temporaire.", 'success');
+            header('Location: index.php?uc=jouer&action=listeParties');
+        } else {
+            set_flash("Une erreur est survenue.", 'danger');
+            header('Location: index.php?uc=accueil');
         }
         break;
     case 'deconnexion':

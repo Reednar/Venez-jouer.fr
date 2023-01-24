@@ -2,8 +2,7 @@
 $action = $_GET['action'];
 
 if (!check_session()) {
-    set_flash("Vous devez être connecté pour accéder à cette page.", 'danger');
-    header('Location: index.php?uc=authentification&action=connexion');
+    header('Location: index.php?uc=authentification&action=tempProfile');
 } else {
     switch ($action) {
         case 'listeParties':

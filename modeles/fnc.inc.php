@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * Convertit les états des parties en string
+ * 0 = Salon de la partie
+ * 1 = Pile ou face
+ * 2 = En cours
+ * 3 = Finie
+ * 
+ * @param Partie $partie
+ * @return string
+ */
 function check_etat_partie(Partie $partie) : string {
     $etat = $partie->getEtat();
     switch ($etat) {
@@ -16,6 +26,12 @@ function check_etat_partie(Partie $partie) : string {
     }
 }
 
+/**
+ * Vérifie si le nom de la partie est disponible
+ *
+ * @param string $nom
+ * @return boolean
+ */
 function check_dispo_nom_partie(string $nom) : bool {
     $pdo = monPDO::getInstance();
     $req = $pdo->prepare("SELECT * FROM partie WHERE nom = :nom");
